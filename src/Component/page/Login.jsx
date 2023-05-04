@@ -1,7 +1,6 @@
 
 import { useContext, useState } from 'react';
 import { FaGoogle,FaGithub } from 'react-icons/fa';
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/24/solid';
 import { AuthContext } from '../../Auth-Provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
