@@ -18,12 +18,13 @@ const Details = () => {
         <figure>
           <img
             className="w-96 rounded-2xl"
-            src={details?.chefPicture}
+            src={details?.chef_picture}
             alt="Shoes"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title mx-auto bold mb-5">{details?.chefName}</h2>
+          <h2 className="card-title mx-auto bold mb-5"><span>Name:</span>{details?.chef_name}</h2>
+          <p className="w-96 mx-10"><span className="bold">Bio:</span> {details?.bio}</p>
           <div className="overflow-x-auto">
             <table className="table w-full">
               {/* head */}

@@ -16,7 +16,7 @@ const Shop = () => {
   return (
     <div>
     <Home/>
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2  gap-5">
       {data.slice(0,showAll ?9 :6).map((loopData) => (
         <Card key={loopData.id} loopData={loopData}></Card>
       ))}
