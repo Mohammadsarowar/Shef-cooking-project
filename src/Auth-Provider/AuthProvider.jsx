@@ -3,6 +3,7 @@ import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword,
 import app from "../firebase/firebase.config";
  export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [user,setUser] = useState('') 
  const Provider = new GoogleAuthProvider()
  const ProviderGitHub = new GithubAuthProvider()
@@ -17,7 +18,8 @@ const AuthProvider = ({ children }) => {
      return signInWithPopup(auth,Provider)
      .then((result) => {
         const login = result.user
-        console.log(login);
+        setIsLoading(false)
+     
     }).catch((error) => {
      console.log(error);
     });
@@ -27,6 +29,7 @@ const AuthProvider = ({ children }) => {
        return signInWithPopup(auth, ProviderGitHub)
        .then((result) => {
         const login = result.user
+        setIsLoading(false)
         console.log(login);
     }).catch((error) => {
      console.log(error);
@@ -40,6 +43,7 @@ const AuthProvider = ({ children }) => {
    useEffect(()=>{
        const unsubscribe = onAuthStateChanged(auth,(userInfo)=>{
         setUser(userInfo)
+        setIsLoading(false)
         console.log(userInfo);
        
         return ()=>{
@@ -54,7 +58,8 @@ const AuthProvider = ({ children }) => {
     newSingIn,
     LoginWithGoogle,
     LogInWithGithub ,
-    LogOut
+    LogOut,
+    isLoading
   };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
