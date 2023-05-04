@@ -7,7 +7,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const {newSingIn,LoginWithGoogle,LogInWithGithub} = useContext(AuthContext)
-  const [error, setError] = useState('');
+  const [error, setError] = useState();
+  console.log(error);
   const [password, setPassword] = useState('');
   const location = useLocation()
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ const Login = () => {
       const login = result.user;
       navigate(from,{replace:true})
       console.log(login);
+      setError(login)
     })
     .catch(error=>{
       setError(error);
@@ -63,7 +65,9 @@ const Login = () => {
             <button className="btn btn-primary">Login</button>
           </div>
         </form> 
-        
+          <div>
+       <p>{error}</p>
+          </div>
         <div className='mx-auto'> 
         <button onClick={LoginWithGoogle} className='btn btn-outline btn-secondary mb-5'><FaGoogle className='mr-1 text-lg' /> Login with Google</button><br/>
         <button onClick={LogInWithGithub} className='btn btn-outline mb-5'> <FaGithub className='mr-1 text-lg'/> Login with Github</button>
