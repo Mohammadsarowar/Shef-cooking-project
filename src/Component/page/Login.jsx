@@ -3,17 +3,18 @@ import { useContext, useState } from 'react';
 import { FaGoogle,FaGithub } from 'react-icons/fa';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/24/solid';
 import { AuthContext } from '../../Auth-Provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const {newSingIn} = useContext(AuthContext)
-  const [email, setEmail] = useState('');
+  const {newSingIn,LoginWithGoogle,LogInWithGithub} = useContext(AuthContext)
+  const [error, setError] = useState('');
   const [password, setPassword] = useState('');
-
- 
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const from = location.state?.from?.pathname || "/"
     const form = event.target;
     const email = form.email.value;
     const password  = form.password.value
@@ -21,10 +22,11 @@ const Login = () => {
     newSingIn(email,password)
     .then((result)=>{
       const login = result.user;
+      navigate(from,{replace:true})
       console.log(login);
     })
     .catch(error=>{
-      console.log(error);
+      setError(error);
     })
     // Submit login credentials to server and handle response
   };
@@ -56,13 +58,15 @@ const Login = () => {
               <a href="#" className="label-text-alt link-hover link link-secondary">Forgot password?</a>
             </label>
           </div>
+        
           <div className="form-control mt-6">
             <button className="btn btn-primary">Login</button>
           </div>
-        </form>
+        </form> 
+        
         <div className='mx-auto'> 
-        <button className='btn btn-outline btn-secondary mb-5'><FaGoogle className='mr-1 text-lg' /> Login with Google</button><br/>
-        <button className='btn btn-outline mb-5'> <FaGithub className='mr-1 text-lg'/> Login with Github</button>
+        <button onClick={LoginWithGoogle} className='btn btn-outline btn-secondary mb-5'><FaGoogle className='mr-1 text-lg' /> Login with Google</button><br/>
+        <button onClick={LogInWithGithub} className='btn btn-outline mb-5'> <FaGithub className='mr-1 text-lg'/> Login with Github</button>
 
         </div>
        

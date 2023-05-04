@@ -5,7 +5,7 @@ import { AuthContext } from "../../Auth-Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignUp = () => {
-  const { createUser,LoginWithGoogle } = useContext(AuthContext);
+  const { createUser,LoginWithGoogle,LogInWithGithub  } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -176,7 +176,7 @@ const SignUp = () => {
           </form>
           <div className="flex justify-around mt-8 gap-2"> 
         <button onClick={LoginWithGoogle} className='btn btn-outline btn-secondary'><FaGoogle className='mr-1 text-lg' /> SignIn with Google</button><br/>
-        <button className='btn btn-outline'> <FaGithub className='mr-1 text-lg'/>SignIn with Github</button>
+        <button onClick={LogInWithGithub} className='btn btn-outline'> <FaGithub className='mr-1 text-lg'/>SignIn with Github</button>
 
         </div>
         </div>

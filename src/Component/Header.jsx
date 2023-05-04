@@ -3,7 +3,7 @@ import { AuthContext } from "../Auth-Provider/AuthProvider";
 import { useContext } from "react";
 
 const Header = () => {
-  const {user} = useContext(AuthContext)
+  const {user,LogOut} = useContext(AuthContext)
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -70,26 +70,8 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li tabIndex={0}>
-              <a>
-               Pages
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                </svg>
-              </a>
-              <ul className="p-2">
-                <li>
-                <Link to="/blog">Blog</Link>
-                </li>
-                <li>
-                <Link to="/about">About</Link>
-                </li>
-              </ul>
+            <Link to="/blog">Blog</Link>
+            
             </li>
             <li>
               <Link to="/shop">Shop</Link>
@@ -103,18 +85,18 @@ const Header = () => {
         <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <img src={user.photoURL}></img>
         </div>
       </label>
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li>
           <a className="justify-between">
-            Profile
+           {user.displayName}
             <span className="badge">New</span>
           </a>
         </li>
-        <li><a>Settings</a></li>
-        <li><Link to="/login">Logout</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><button onClick={LogOut} >Logout</button></li>
       </ul>
     </div>
         </div> :
