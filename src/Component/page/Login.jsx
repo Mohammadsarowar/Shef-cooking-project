@@ -25,7 +25,7 @@ const Login = () => {
       const login = result.user;
       navigate(from,{replace:true})
       console.log(login);
-      setError(login)
+    
     })
     .catch(error=>{
       setError(error);
@@ -66,7 +66,7 @@ const Login = () => {
           </div>
         </form> 
           <div>
-       <p>{error}</p>
+    
           </div>
         <div className='mx-auto'> 
         <button onClick={LoginWithGoogle} className='btn btn-outline btn-secondary mb-5'><FaGoogle className='mr-1 text-lg' /> Login with Google</button><br/>
