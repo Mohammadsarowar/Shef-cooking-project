@@ -7,8 +7,8 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 const SignUp = () => {
   const { createUser,LoginWithGoogle,LogInWithGithub  } = useContext(AuthContext);
 
-  const [username, setUsername] = useState("");
-  const [accept , setAccept] = useState("");
+  const [error, setError] = useState("");
+  const [accept , setAccept] = useState();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -133,31 +133,28 @@ const SignUp = () => {
                   id="remember_me"
                   name="remember_me"
                   type="checkbox"
+                  onClick={handleAccepted}
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
-                <label
+                <label 
                   htmlFor="remember_me"
                   className="ml-2 block text-sm text-gray-900"
                 >
-                <button>      Remember me</button>
+                <button type="checkbox" name='accept' >Remember me</button>
             
                 </label>
               </div>
 
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot your password?
-                </a>
+              <small>already have an account  <Link className='link link-secondary ml-1' to='/login'>Login</Link></small>
               </div>
             </div>
 
             <div>
-              <button
+            
+              <button disabled={!accept}
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white btn"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <svg
@@ -178,7 +175,10 @@ const SignUp = () => {
               </button>
             </div>
           </form>
-          <div className="flex justify-around mt-8 gap-2"> 
+          <div>
+           <p className="text-rose-800">{error}</p>
+          </div>
+          <div className="flex justify-around mt-12 gap-2"> 
         <button onClick={LoginWithGoogle} className='btn btn-outline btn-secondary'><FaGoogle className='mr-1 text-lg' /> SignIn with Google</button><br/>
         <button onClick={LogInWithGithub} className='btn btn-outline'> <FaGithub className='mr-1 text-lg'/>SignIn with Github</button>
 

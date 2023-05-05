@@ -3,7 +3,7 @@ import { AuthContext } from "../Auth-Provider/AuthProvider";
 import { useContext } from "react";
 
 const Header = () => {
-  const {user,LogOut} = useContext(AuthContext)
+  const { user, LogOut } = useContext(AuthContext);
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -34,15 +34,14 @@ const Header = () => {
               </li>
               <li tabIndex={0}>
                 <Link to="/blog" className="justify-between">
-                Blog
-              
+                  Blog
                 </Link>
                 <ul className="p-2">
                   <li>
-                  <Link to="/blog">Blog</Link>
+                    <Link to="/blog">Blog</Link>
                   </li>
                   <li>
-                  <Link to="/about">About</Link>
+                    <Link to="/about">About</Link>
                   </li>
                 </ul>
               </li>
@@ -54,7 +53,9 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">Cookiteer</Link>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Cookiteer
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -62,38 +63,62 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li tabIndex={0}>
-            <Link to="/blog">Blog</Link>
-            
+              <Link to="/blog">Blog</Link>
             </li>
             <li>
               <Link to="/shop">Shef</Link>
             </li>
             <li>
-            <Link to="/contact">Contact Us</Link>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
-       { user? <div className="navbar-end">
-        <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img src={user.photoURL}></img>
-        </div>
-      </label>
-      <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <a className="justify-between">
-           {user.displayName}
-            <span className="badge">New</span>
-          </a>
-        </li>
-        <li><Link to="/about">About</Link></li>
-        <li><button onClick={LogOut} >Logout</button></li>
-      </ul>
-    </div>
-        </div> :
-        <div className="navbar-end">   <Link to='/singUp' className="btn">SignUp</Link></div>
-     }
+        {user ? (
+          <div className="navbar-end">
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                {user.photoURL ? (
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL}></img>
+                  </div>
+                ) : (
+                  <div className="avatar">
+                    <div className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                      <img
+                        className=""
+                        src="https://media.istockphoto.com/id/1297159365/photo/portrait-of-young-smiling-woman-face-partially-covered-with-flying-hair-in-windy-day-standing.jpg?s=1024x1024&w=is&k=20&c=BPwoWgCpnJwha8xmMWUzHu0-Z762901IzRetXBanHjU="
+                      />
+                    </div>
+                  </div>
+                )}
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+               { user.displayName? <li>
+                  <a className="justify-between">
+                    {user.displayName}
+                    <span className="badge">New</span>
+                  </a>
+                </li> : <li><a>Profile</a> </li>}
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <button onClick={LogOut}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <div className="navbar-end">
+            {" "}
+            <Link to="/singUp" className="btn">
+              SignUp
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

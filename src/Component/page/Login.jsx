@@ -52,8 +52,8 @@ const Login = () => {
               <span className="label-text">Password</span>
             </label>
             <input type="password" name='password' placeholder="password" className="input input-bordered" />
-            <label className="label flex">
-            <small>already have an account  <Link className='link link-secondary ml-1' to='/signUp'>SignUp</Link></small>
+            <label className="label">
+          
              
               <a href="#" className="label-text-alt link-hover link link-secondary">Forgot password?</a>
             </label>
