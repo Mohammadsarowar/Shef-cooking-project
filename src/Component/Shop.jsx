@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Home from "./Home";
+import Review from "./page/Review";
 
 const Shop = () => {
     const [showAll,setShow] = useState(false);
@@ -27,7 +28,7 @@ const Shop = () => {
                 <button onClick={handleShowAll} className='btn' >Show All</button>
             )} 
     </div>
- 
+      <Review/>
     </div>
    
   );

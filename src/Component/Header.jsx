@@ -33,18 +33,10 @@ const Header = () => {
                 <a>Home pages</a>
               </li>
               <li tabIndex={0}>
-                <a className="justify-between">
-                  Pages
-                  <svg
-                    className="fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                  </svg>
-                </a>
+                <Link to="/blog" className="justify-between">
+                Blog
+              
+                </Link>
                 <ul className="p-2">
                   <li>
                   <Link to="/blog">Blog</Link>
@@ -55,7 +47,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <Link to="/shop">Shop</Link>
+                <Link to="/shop">Shef</Link>
               </li>
               <li>
                 <Link to="/contact">Contact Us</Link>
@@ -74,7 +66,7 @@ const Header = () => {
             
             </li>
             <li>
-              <Link to="/shop">Shop</Link>
+              <Link to="/shop">Shef</Link>
             </li>
             <li>
             <Link to="/contact">Contact Us</Link>

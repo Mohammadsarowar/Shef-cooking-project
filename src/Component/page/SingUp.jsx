@@ -8,7 +8,7 @@ const SignUp = () => {
   const { createUser,LoginWithGoogle,LogInWithGithub  } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [accept , setAccept] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -30,6 +30,9 @@ const SignUp = () => {
     console.log(email);
     // handle form submission logic here
   };
+  const handleAccepted = (event) =>{
+    setAccept(event.target.checked);
+}
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -136,7 +139,8 @@ const SignUp = () => {
                   htmlFor="remember_me"
                   className="ml-2 block text-sm text-gray-900"
                 >
-                  Remember me
+                <button>      Remember me</button>
+            
                 </label>
               </div>
 

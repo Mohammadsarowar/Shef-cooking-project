@@ -1,41 +1,55 @@
-import React from "react";
-import "keen-slider/keen-slider.min.css";
-import KeenSlider from "keen-slider";
-import { useKeenSlider } from "keen-slider/react";
-import photo from "../assets/pexels-ash-376464.jpg";
-import photo_too from "../assets/pexels-robin-stickel-70497.jpg";
-const Home = () => {
-  const [sliderRef, instanceRef] = useKeenSlider(
+import { useState } from 'react';
+
+const Slider = () =>{
+  const images = [
     {
-      loop: true,
+      id: 1,
+      src: 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600',
+      alt: 'Image 1',
     },
-    [
-      // add plugins here
-    ]
-  );
+    {
+      id: 2,
+      src: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=600',
+      alt: 'Image 2',
+    },
+    {
+      id: 3,
+      src: 'https://images.pexels.com/photos/1731535/pexels-photo-1731535.jpeg?auto=compress&cs=tinysrgb&w=600',
+      alt: 'Image 3',
+    },
+  ];
+
+  const [currentImage, setCurrentImage] = useState(images[0]);
+
+  function handlePrevious() {
+    const currentIndex = images.findIndex((image) => image.id === currentImage.id);
+    const previousIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    setCurrentImage(images[previousIndex]);
+  }
+
+  function handleNext() {
+    const currentIndex = images.findIndex((image) => image.id === currentImage.id);
+    const nextIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    setCurrentImage(images[nextIndex]);
+  }
+
   return (
-    <div ref={sliderRef} className="flex">
-      <div 
-        style={{ backgroundImage: `url(${photo})` }}
-        className=" w-full bg-cover bg-center h-96 mx-9 rounded-md"
+    <div className="relative flex items-center justify-center mx-10">
+      <img src={currentImage.src} alt={currentImage.alt} className="w-full object-cover h-96 rounded-lg" />
+      <button
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-l-md focus:outline-none focus:shadow-outline"
+        onClick={handlePrevious}
       >
-        <div className="text-slate-200 card w-fit mx-auto m-">
-            <h2 className="text-center my-auto text-3xl bold mt-10">Cooking Never Got any Easier</h2>
-            <p className="text-center mt-4 bold">Some quick example text to build on the card title and make up the bulk of the card's content...</p>
-            <button className="btn btn-active btn-primary mx-auto mt-20 px-20">Cooking Box</button>
-        </div>
-      </div>
-      {/* <div
-        style={{ backgroundImage: `url(${photo})` }}
-        className="w-full h-96 bg-auto  bg-center"
+        &lt;
+      </button>
+      <button
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-r-md focus:outline-none focus:shadow-outline"
+        onClick={handleNext}
       >
-        2
-      </div>
-      <div className="h-14 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
-      <div className="h-14 bg-gradient-to-r from-sky-500 to-indigo-500"></div>
-      <div className="h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500"></div> */}
+        &gt;
+      </button>
     </div>
   );
-};
+}
 
-export default Home;
+export default Slider;
