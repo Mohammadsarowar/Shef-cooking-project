@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { FaGithub, FaGoogle, FaStar } from "react-icons/fa";
+import usedTitle from "../../Auth-Provider/usedTitle";
 const Details = () => {
+  usedTitle(Card-Details)
   const [details, setDetails] = useState();
   const data = useLoaderData();
   const userId = useParams();

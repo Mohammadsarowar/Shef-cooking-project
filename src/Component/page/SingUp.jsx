@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import { AuthContext } from "../../Auth-Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import usedTitle from "../../Auth-Provider/usedTitle";
 
 const SignUp = () => {
   const { createUser,LoginWithGoogle,LogInWithGithub  } = useContext(AuthContext);
-
+  usedTitle("SignUp")
   const [error, setError] = useState("");
   const [accept , setAccept] = useState();
   const [success, setSuccess] = useState(""); 
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +24,14 @@ const SignUp = () => {
     if(!/(?=.*[A-Z])/.test(password)){
        setError("please add at least one uppercase");
        return;
+    }
+    else if(!/(?=.*[0-9])/.test(password)){
+       setError('Please add at least tow numbers')
+       return;
+    }
+    else if(password.length<6){
+      setError('please add at least 6 characters in your password')
+      return;
     }
     createUser(email, password)
       .then((result) => {

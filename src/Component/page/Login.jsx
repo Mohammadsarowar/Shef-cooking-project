@@ -3,14 +3,16 @@ import { useContext, useState } from 'react';
 import { FaGoogle,FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../Auth-Provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import usedTitle from '../../Auth-Provider/usedTitle';
 
 const Login = () => {
   const {newSingIn,LoginWithGoogle,LogInWithGithub} = useContext(AuthContext)
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(""); 
   console.log(error);
   const location = useLocation()
   const navigate = useNavigate()
-
+  usedTitle('Login')
   const handleSubmit = (event) => {
     event.preventDefault();
     const from = location.state?.from?.pathname || "/"
@@ -23,14 +25,17 @@ const Login = () => {
       const login = result.user;
       navigate(from,{replace:true})
       console.log(login);
+      setError('')
+      event.target.reset();
+      setSuccess('user has been created successfully')
     
     })
     .catch(error=>{
-      setError(error);
-    })
+      setError(error.message);
+      setSuccess('')
     // Submit login credentials to server and handle response
-  };
-
+  });
+  }
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -58,8 +63,10 @@ const Login = () => {
               <a href="#" className="label-text-alt link-hover link link-secondary">Forgot password?</a>
             </label>
           </div>
-        
-          <div className="form-control mt-6">
+           <div><p className='text-rose-800 mt-5 text-center bold'>{error}</p> 
+            
+            </div>
+          <div className="form-control mt-3">
             <button className="btn btn-primary">Login</button>
           </div>
         </form> 

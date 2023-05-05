@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Home from "./Home";
 import Review from "./page/Review";
+import usedTitle from "../Auth-Provider/usedTitle";
 
 const Shop = () => {
+  usedTitle('Home')
     const [showAll,setShow] = useState(false);
   const handleShowAll = () =>{
         setShow(true)

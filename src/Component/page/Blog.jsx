@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import usedTitle from '../../Auth-Provider/usedTitle';
 
 
 const Blog = ()=> {
   const [posts, setPosts] = useState([]);
-
+   usedTitle(Blog)
   useEffect(() => {
     // TODO: Fetch posts from backend API
     setPosts([
