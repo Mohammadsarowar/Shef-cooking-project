@@ -6,7 +6,6 @@ import { AuthContext } from "./AuthProvider";
 const PrivateRouter = ({ children }) => {
   const location = useLocation();
 
-  console.log(location);
   const { user,isLoading } = useContext(AuthContext);
   if (isLoading) {
     return <progress className="progress w-56 text-center"></progress>;

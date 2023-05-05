@@ -76,14 +76,14 @@ const Header = () => {
         {user ? (
           <div className="navbar-end">
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <label tabIndex={0} className=" btn btn-ghost btn-circle avatar">
                 {user.photoURL ? (
-                  <div className="w-10 rounded-full">
-                    <img src={user.photoURL}></img>
+                  <div className=" rounded-full">
+                    <img className="" src={user.photoURL}></img>
                   </div>
                 ) : (
                   <div className="avatar">
-                    <div className=" rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <div className="m-1 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                       <img
                         className=""
                         src="https://media.istockphoto.com/id/1297159365/photo/portrait-of-young-smiling-woman-face-partially-covered-with-flying-hair-in-windy-day-standing.jpg?s=1024x1024&w=is&k=20&c=BPwoWgCpnJwha8xmMWUzHu0-Z762901IzRetXBanHjU="
