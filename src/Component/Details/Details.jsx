@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-
+import { FaGithub, FaGoogle, FaStar } from "react-icons/fa";
 const Details = () => {
   const [details, setDetails] = useState();
   const data = useLoaderData();
@@ -23,8 +23,13 @@ const Details = () => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title mx-auto bold mb-5"><span>Name:</span>{details?.chef_name}</h2>
-          <p className="w-96 mx-10"><span className="bold">Bio:</span> {details?.bio}</p>
+          <h2 className="card-title mx-auto bold mb-5">
+            <span>Name:</span>
+            {details?.chef_name}
+          </h2>
+          <p className="w-96 mx-10">
+            <span className="bold">Bio:</span> {details?.bio}
+          </p>
           <div className="overflow-x-auto">
             <table className="table w-full">
               {/* head */}
@@ -51,6 +56,13 @@ const Details = () => {
               </tbody>
             </table>
           </div>
+          <div className="flex">
+            <FaStar key="" className="h-6 w-6 text-yellow-500" />
+            <FaStar key="" className="h-6 w-6 text-yellow-500" />
+            <FaStar key="" className="h-6 w-6 text-yellow-500" />
+            <FaStar key="" className="h-6 w-6 text-yellow-500" />
+          </div>
+
           <div className="card-actions justify-end">
             {/* The button to open modal */}
             <label htmlFor="my-modal-4" className="btn">
@@ -64,7 +76,6 @@ const Details = () => {
                 <h3 className="text-lg font-bold">
                   Congratulations Add to Favourite user!
                 </h3>
-                
               </label>
             </label>
           </div>

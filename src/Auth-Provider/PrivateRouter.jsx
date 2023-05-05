@@ -9,7 +9,7 @@ const PrivateRouter = ({ children }) => {
   console.log(location);
   const { user,isLoading } = useContext(AuthContext);
   if (isLoading) {
-    return <Spinner className="mx-auto" animation="border" variant="primary" />;
+    return <progress className="progress w-56 text-center"></progress>;
   }
   if (user) {
     return children;
