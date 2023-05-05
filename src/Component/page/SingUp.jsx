@@ -9,23 +9,33 @@ const SignUp = () => {
 
   const [error, setError] = useState("");
   const [accept , setAccept] = useState();
-  const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(""); 
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSuccess('')
+    setError('')
     const form = e.target;
     const username = form.username.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+    if(!/(?=.*[A-Z])/.test(password)){
+       setError("please add at least one uppercase");
+       return;
+    }
     createUser(email, password)
       .then((result) => {
-        const login = result.user;
+        const login = result.user; 
+        setError('')
+        e.target.reset();
         console.log(login);
+        setSuccess('user has been created successfully')
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
+        setSuccess('')
       });
     console.log(email);
     // handle form submission logic here
@@ -151,7 +161,10 @@ const SignUp = () => {
             </div>
 
             <div>
-            
+            <div className="mb-5">
+           <p className="text-rose-800 mt-5 text-center bold">{error}</p>
+           <p className="text-rose-800 mt-5 text-center bold">{success}</p>
+          </div>
               <button disabled={!accept}
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white btn"
@@ -175,10 +188,8 @@ const SignUp = () => {
               </button>
             </div>
           </form>
-          <div>
-           <p className="text-rose-800">{error}</p>
-          </div>
-          <div className="flex justify-around mt-12 gap-2"> 
+         
+          <div className="flex justify-around mt-5 gap-2"> 
         <button onClick={LoginWithGoogle} className='btn btn-outline btn-secondary'><FaGoogle className='mr-1 text-lg' /> SignIn with Google</button><br/>
         <button onClick={LogInWithGithub} className='btn btn-outline'> <FaGithub className='mr-1 text-lg'/>SignIn with Github</button>
 
